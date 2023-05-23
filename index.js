@@ -1,19 +1,29 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
+app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("hello world my god");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
+const createEmployee = require("./Controllers/createEmployee");
 app.post("/", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  console.log(`name is ${name} and email is ${email}`);
-  res.send("received");
+  createEmployee(req, res);
+});
+
+const getAllEmployees = require("./Controllers/getAllEmployees");
+app.get("/employees", (req, res) => {
+  getAllEmployees(req, res);
+});
+
+const getSingleEmployee = require("./Controllers/getSingleEmployee");
+app.get("/employee/:id", (req, res) => {
+  getSingleEmployee(req, res);
 });
 
 app.listen(3000, () => {
