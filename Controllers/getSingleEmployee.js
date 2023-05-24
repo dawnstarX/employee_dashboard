@@ -5,11 +5,12 @@ const Contact = db.contacts;
 const getSingleEmployee = async (req, res) => {
   const id = req.params.id;
   try {
-    const employee = await db.employees.findOne({
-      id,
+    const employee = await Employee.findOne({
+      where: { id },
       include: {
         model: Contact,
       },
+      exclude: ["createdAt", "updatedAt"],
     });
     res.send(employee);
   } catch (err) {

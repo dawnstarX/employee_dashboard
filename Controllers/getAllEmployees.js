@@ -7,6 +7,7 @@ const getAllEmployees = async (req, res) => {
     const employees = await Employee.findAll({
       include: {
         model: Contact,
+        exclude: ["createdAt", "updatedAt"],
       },
       exclude: ["createdAt", "updatedAt"],
     });

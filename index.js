@@ -26,6 +26,16 @@ app.get("/employee/:id", (req, res) => {
   getSingleEmployee(req, res);
 });
 
+const updateEmployee = require("./Controllers/updateEmployee");
+app.put("/employee/:id", (req, res) => {
+  updateEmployee(req, res);
+});
+
+const deleteEmployee = require("./Controllers/deleteEmployee");
+app.delete("/employee/:id", (req, res) => {
+  deleteEmployee(req, res);
+});
+
 app.listen(3000, () => {
   console.log("listening at port 3000");
 });
