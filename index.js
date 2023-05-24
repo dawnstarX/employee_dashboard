@@ -7,39 +7,24 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//default route to display a form to get employee data
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+//default route retreive employee data from form
 const createEmployee = require("./Controllers/createEmployee");
 app.post("/", (req, res) => {
   createEmployee(req, res);
 });
 
-const getAllEmployees = require("./Controllers/getAllEmployees");
-app.get("/employees", (req, res) => {
-  getAllEmployees(req, res);
-});
+//Employees router for all employees
+const EmployessRouter = require("./Routes/Employees");
+app.use("/employees", EmployessRouter);
 
-const getPaginatedEmployees = require("./Controllers/getPaginatedEmployees");
-app.get("/employees/paginate", (req, res) => {
-  getPaginatedEmployees(req, res);
-});
-
-const getSingleEmployee = require("./Controllers/getSingleEmployee");
-app.get("/employee/:id", (req, res) => {
-  getSingleEmployee(req, res);
-});
-
-const updateEmployee = require("./Controllers/updateEmployee");
-app.put("/employee/:id", (req, res) => {
-  updateEmployee(req, res);
-});
-
-const deleteEmployee = require("./Controllers/deleteEmployee");
-app.delete("/employee/:id", (req, res) => {
-  deleteEmployee(req, res);
-});
+//Employee router for single employee
+const EmployeeRouter = require("./Routes/Employe");
+app.use("/employee", EmployeeRouter);
 
 app.listen(3000, () => {
   console.log("listening at port 3000");

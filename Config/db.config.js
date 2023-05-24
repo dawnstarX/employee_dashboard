@@ -1,3 +1,5 @@
+//keys and passwords for db connection
+
 module.exports = {
   dbName: process.env.DB_NAME,
   dbUser: process.env.DB_USER,

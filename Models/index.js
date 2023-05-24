@@ -1,6 +1,7 @@
 const dbconfig = require("../Config/db.config");
 const { Sequelize, DataTypes } = require("sequelize");
 
+//configuring database
 const sequelize = new Sequelize(
   dbconfig.dbName,
   dbconfig.dbUser,
@@ -12,6 +13,7 @@ const sequelize = new Sequelize(
   }
 );
 
+//connection to mysql database
 sequelize
   .authenticate()
   .then(() => {

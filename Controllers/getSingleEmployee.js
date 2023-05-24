@@ -11,10 +11,10 @@ const getSingleEmployee = async (req, res) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
         model: Contact,
-        attributes: { exclude: ["createdAt", "updatedAt", "employeeId", "id"] },
+        attributes: { exclude: ["createdAt", "updatedAt", "employeeId"] },
       },
     });
-    res.staus(200).send(employee);
+    res.status(200).send(employee);
   } catch (err) {
     res.status(500).send(err);
   }
