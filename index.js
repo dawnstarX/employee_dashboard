@@ -21,6 +21,11 @@ app.get("/employees", (req, res) => {
   getAllEmployees(req, res);
 });
 
+const getPaginatedEmployees = require("./Controllers/getPaginatedEmployees");
+app.get("/employees/paginate", (req, res) => {
+  getPaginatedEmployees(req, res);
+});
+
 const getSingleEmployee = require("./Controllers/getSingleEmployee");
 app.get("/employee/:id", (req, res) => {
   getSingleEmployee(req, res);

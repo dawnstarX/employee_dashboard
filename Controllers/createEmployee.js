@@ -59,7 +59,7 @@ const createEmployee = async (req, res) => {
       primaryContactObj,
       secondaryContactObj,
     ]);
-    res.send("Employee data has been stores successfully");
+    res.status(201).send("Employee data has been stores successfully");
   } catch (err) {
     res.status(500).send(err.message);
   }
